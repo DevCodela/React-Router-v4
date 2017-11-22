@@ -13562,7 +13562,9 @@ var Main = function (_Component) {
         null,
         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/about', component: _About2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/about/team', component: _Team2.default }),
-        _react2.default.createElement(_reactRouterDom.Route, { path: '/templates', component: _Templates2.default })
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/templates', render: function render() {
+            return _react2.default.createElement(_Templates2.default, { title: 'Templates 2017' });
+          } })
       );
     }
   }]);
@@ -13676,7 +13678,7 @@ var Templates = function (_Component) {
         _react2.default.createElement(
           'h1',
           null,
-          'Templates'
+          this.props.title
         )
       );
     }

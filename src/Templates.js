@@ -5,7 +5,7 @@ export default class Templates extends Component {
   render() {
     return(
       <div>
-        <h1>Templates</h1>
+        <h1>{this.props.title}</h1>
       </div>
     )
   }

@@ -11,7 +11,8 @@ export default class Main extends Component {
       <div>
         <Route exact path="/about" component={ About } />
         <Route path="/about/team" component={ Team } />
-        <Route path="/templates" component={ Templates } />
+        {/* <Route path="/templates" component={ Templates } /> */}
+        <Route path="/templates" render={ () => <Templates title="Templates 2017" /> } />
       </div>
     )
   }
