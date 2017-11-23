@@ -8,7 +8,7 @@ import Templates from './Templates'
 export default class Main extends Component {
   render() {
     return(
-      <div className="container">
+      <div className="container mt-4">
         <Route exact path="/about" component={ About } />
         <Route path="/about/team" component={ Team } />
         <Route path="/templates" component={ Templates } />

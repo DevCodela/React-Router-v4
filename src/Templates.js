@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Route } from 'react-router-dom'
+import Template from './Template'
 
 
 export default class Templates extends Component {
@@ -24,10 +25,12 @@ export default class Templates extends Component {
   render() {
     const { templates } = this.state
     return(
-      <div>
-        <h1>Templates</h1>
-        <div className="list-group">
+      <div className="row">
+        <div className="list-group col-6">
           { templates.map( template => <NavLink className="list-group-item list-group-item-action" key={ template } to={ `/templates/${template}` }>{ template }</NavLink> ) }
+        </div>
+        <div className="col-6">
+          <Route path="/templates/:name" component={ Template } />
         </div>
       </div>
     )
