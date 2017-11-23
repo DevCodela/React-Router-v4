@@ -6,7 +6,8 @@ export default class Template extends Component {
   constructor() {
     super()
     this.state = {
-      source: ''
+      source: '',
+      error: false
     }
   }
 
@@ -27,7 +28,10 @@ export default class Template extends Component {
       .get(url)
       .then(response => {
         const source = response.data.source
-        this.setState({ source })
+        this.setState({ source, error: false })
+      })
+      .catch(error => {
+        this.setState({ error: true })
       })
   }
 
@@ -36,11 +40,17 @@ export default class Template extends Component {
     const { source } = this.state
     return(
       <div className="card">
-        <div className="card-body">
-          <h4 className="card-title">{ name }</h4>
-          <h6 className="card-subtitle mb-2 text-muted">gitignore template</h6>
-          <pre>{ source }</pre>
-        </div>
+        {
+          this.state.error
+          ?
+          <div className="card-body">The template doesn't exist!</div>
+          :
+          <div className="card-body">
+            <h4 className="card-title">{ name }</h4>
+            <h6 className="card-subtitle mb-2 text-muted">gitignore template</h6>
+            <pre>{ source }</pre>
+          </div>
+        }
       </div>
     )
   }

@@ -14444,6 +14444,14 @@ var Templates = function (_Component) {
       });
     }
   }, {
+    key: 'search',
+    value: function search(e) {
+      e.preventDefault();
+      var q = this.refs.q.value;
+      var path = '/templates/' + q;
+      this.props.history.push(path);
+    }
+  }, {
     key: 'render',
     value: function render() {
       var templates = this.state.templates;
@@ -14454,6 +14462,24 @@ var Templates = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'list-group col-6' },
+          _react2.default.createElement(
+            'form',
+            { className: 'mb-2', onSubmit: this.search.bind(this) },
+            _react2.default.createElement(
+              'div',
+              { className: 'input-group' },
+              _react2.default.createElement('input', { ref: 'q', type: 'text', className: 'form-control', placeholder: 'Search for...' }),
+              _react2.default.createElement(
+                'span',
+                { className: 'input-group-btn' },
+                _react2.default.createElement(
+                  'button',
+                  { className: 'btn btn-primary', type: 'submit' },
+                  'Go!'
+                )
+              )
+            )
+          ),
           templates.map(function (template) {
             return _react2.default.createElement(
               _reactRouterDom.NavLink,
@@ -15354,7 +15380,8 @@ var Template = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Template.__proto__ || Object.getPrototypeOf(Template)).call(this));
 
     _this.state = {
-      source: ''
+      source: '',
+      error: false
     };
     return _this;
   }
@@ -15382,7 +15409,9 @@ var Template = function (_Component) {
 
       _axios2.default.get(url).then(function (response) {
         var source = response.data.source;
-        _this2.setState({ source: source });
+        _this2.setState({ source: source, error: false });
+      }).catch(function (error) {
+        _this2.setState({ error: true });
       });
     }
   }, {
@@ -15394,7 +15423,11 @@ var Template = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'card' },
-        _react2.default.createElement(
+        this.state.error ? _react2.default.createElement(
+          'div',
+          { className: 'card-body' },
+          'The template doesn\'t exist!'
+        ) : _react2.default.createElement(
           'div',
           { className: 'card-body' },
           _react2.default.createElement(
