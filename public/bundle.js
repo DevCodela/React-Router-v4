@@ -14220,6 +14220,9 @@ var Main = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'container mt-4' },
+        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', render: function render() {
+            return _react2.default.createElement(_reactRouterDom.Redirect, { to: '/templates' });
+          } }),
         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/about', component: _About2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/about/team', component: _Team2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '/templates', component: _Templates2.default })
